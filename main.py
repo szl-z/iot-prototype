@@ -10,14 +10,13 @@ import chart_studio.plotly as py
 import json
 
 set_credentials_file(
-  username = PLOTLY_API_KEY,
+  username = PLOTLY_USERNAME,
   api_key = PLOTLY_API_KEY
 )
 
 def parse_data(data) -> pd.DataFrame:
 #  sound_df = pd.read_json(data)
   sound_df = pd.DataFrame(data)
-  sound_df.set_index(keys=sound_df['timestamp'], inplace=True)
   return sound_df
 
 def create_chart(sound_df: DataFrame) -> py.plot:
@@ -30,7 +29,6 @@ def create_chart(sound_df: DataFrame) -> py.plot:
   fig.show()
   chart = py.plot(
     fig,
-    filename=symbol,
     auto_open=False,
     fileopt='overwrite',
     sharing='public'
